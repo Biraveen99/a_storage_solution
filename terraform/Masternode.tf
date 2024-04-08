@@ -48,20 +48,6 @@ provisioner "remote-exec" {  ##test_objekt for å mekke en mastervm med kubespra
         "sudo apt update",
         "sudo apt install -y python3-pip software-properties-common git",
         "pip3 install --upgrade pip",
-        "wget -O- https://apt.releases.hashicorp.com/gpg | gpg --dearmor | sudo tee /usr/share/keyrings/hashicorp-archive-keyring.gpg",
-        "echo deb [signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] https://apt.releases.hashicorp.com/ $(lsb_release -cs) main | sudo tee /etc/apt/sources.list.d/hashicorp.list",
-        "sudo apt update && sudo apt install terraform",
-        "sudo apt-add-repository --yes --update ppa:ansible/ansible",
-        "sudo apt install ansible -y",
-        // Kubespray setup
-        "git clone https://github.com/kubernetes-sigs/kubespray.git",
-        "cd kubespray",
-        "sudo pip3 install -r requirements.txt",
-        // Assuming the inventory setup is done beforehand or you use a dynamic inventory
-        // Adjust the inventory path and any specific flags you might need
-        "cp -rfp inventory/sample inventory/mycluster",
-        // You might want to customize the inventory file or use a dynamic inventory script here
-        "ansible-playbook -i inventory/mycluster/hosts.yaml  --become --become-user=root cluster.yml",
     ]
 }
 

@@ -12,10 +12,10 @@ provider "openstack" {
 
 
 resource "openstack_compute_instance_v2" "worker_instance" {
-  count = 2  # Number of worker nodes
+  count = 4  # Number of worker nodes
   name = "kube-worker-${count.index}"
   image_name = "ubuntu-22.04-LTS"
-  flavor_name = "C2R4_10G"
+  flavor_name = "css.2c4r.10g"
   key_pair = "masterKey"
   security_groups = ["default"]
 
